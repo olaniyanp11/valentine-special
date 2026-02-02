@@ -139,6 +139,11 @@
 </head>
 <body class="bg-valentine min-h-screen overflow-hidden relative">
     
+<audio id="bgMusic" loop preload="auto" muted>
+    <source src="./romantic-piano-431010.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
     <!-- Floating Hearts Background -->
     <div id="floatingHearts" class="fixed inset-0 pointer-events-none"></div>
     
@@ -420,6 +425,17 @@
         window.addEventListener('load', function() {
             createFloatingHearts();
             checkURLForName();
+
+            // Start music (muted by default)
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.25;           // gentle volume
+            music.play().catch(() => {
+                // Autoplay blocked → wait for user interaction
+                document.body.addEventListener('click', () => {
+                    music.muted = false;
+                    music.play();
+                }, { once: true });
+            });
         });
     </script>
 </body>
