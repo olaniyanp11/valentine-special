@@ -7,7 +7,7 @@
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!--just added a deploy trigger   -->
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,84 +22,54 @@
             font-family: 'Pacifico', cursive;
         }
         
-        /* Floating hearts animation */
         @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10%  { opacity: 0.3; }
+            90%  { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
         
         .floating-heart {
             animation: float linear infinite;
         }
         
-        /* Pulse animation */
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            0%, 100% { transform: scale(1); }
+            50%      { transform: scale(1.05); }
         }
         
         .pulse-animation {
             animation: pulse 1.5s ease-in-out infinite;
         }
         
-        /* Bounce animation */
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-20px); }
         }
         
         .bounce-animation {
             animation: bounce 2s ease-in-out infinite;
         }
         
-        /* Confetti animation */
         @keyframes confetti {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
+            0%   { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
         .confetti {
-            animation: confetti linear;
+            animation: confetti linear forwards;
         }
         
-        /* Shake animation */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px) rotate(-5deg); }
-            75% { transform: translateX(10px) rotate(5deg); }
+            25%  { transform: translateX(-8px) rotate(-4deg); }
+            75%  { transform: translateX(8px) rotate(4deg); }
         }
         
         .shake-animation {
             animation: shake 0.5s ease-in-out;
         }
         
-        /* Gradient text */
         .gradient-text {
             background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
             -webkit-background-clip: text;
@@ -107,336 +77,295 @@
             background-clip: text;
         }
         
-        /* Button hover effects */
-        .button-hover {
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .button-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
-        }
-        
-        .yes-button:hover {
-            animation: pulse 0.6s infinite;
-        }
-        
-        /* Input field */
-        .input-field {
-            transition: all 0.3s ease;
-        }
-        
-        .input-field:focus {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
-        }
-        
-        /* Background gradient */
         .bg-valentine {
             background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 25%, #ffe8f5 50%, #fff0f9 75%, #ffe5f4 100%);
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            h1 { font-size: 2.5rem; line-height: 1.1; }
+            .text-8xl { font-size: 5rem; }
+            .text-6xl { font-size: 3.5rem; }
+            .text-5xl { font-size: 2.75rem; }
+            .text-4xl { font-size: 2rem; }
+            .text-3xl { font-size: 1.5rem; }
+            .text-2xl { font-size: 1.25rem; }
+            .p-16, .p-20 { padding: 2rem !important; }
+            .p-5  { padding: 1.25rem !important; }
+            button { min-height: 3.5rem; }
+            input  { font-size: 1.1rem !important; padding: 1rem !important; }
+            #noBtn, #yesBtn {
+                padding-left: 2.5rem !important;
+                padding-right: 2.5rem !important;
+                font-size: 1.4rem !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            h1 { font-size: 2.1rem; }
+            .text-8xl { font-size: 4.2rem; }
+            .text-6xl { font-size: 3rem; }
+            .p-16, .p-20 { padding: 1.5rem !important; }
+            button { font-size: 1.1rem !important; }
+        }
     </style>
 </head>
-<body class="bg-valentine min-h-screen overflow-hidden relative">
-    
+<body class="bg-valentine min-h-screen overflow-x-hidden relative">
+
 <audio id="bgMusic" loop preload="auto" muted>
     <source src="./romantic-piano-431010.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 
-    <!-- Floating Hearts Background -->
-    <div id="floatingHearts" class="fixed inset-0 pointer-events-none"></div>
-    
-    <!-- Main Container -->
-    <div class="relative z-10 flex justify-center items-center min-h-screen p-5 ">
+<!-- Floating Hearts -->
+<div id="floatingHearts" class="fixed inset-0 pointer-events-none"></div>
+
+<!-- Main Content -->
+<div class="relative z-10 flex min-h-screen items-center justify-center p-4 sm:p-6">
+
+    <!-- PAGE 1: Name Input -->
+    <div id="page1" class="bg-white/95 backdrop-blur-lg rounded-3xl p-8 sm:p-16 max-w-lg w-full shadow-2xl text-center border-4 border-pink-200/30">
+        <div class="text-6xl sm:text-7xl mb-6 bounce-animation">💌</div>
         
-        <!-- PAGE 1: Name Input & Link Generator -->
-        <div id="page1" class="bg-white/95 backdrop-blur-lg rounded-3xl p-16 max-w-xl w-full shadow-2xl text-center border-4 border-pink-200/30 overflow-y-scroll">
-            <div class="text-6xl mb-5 bounce-animation">💌</div>
-            
-            <h1 class="text-5xl mb-3 font-pacifico text-pink-600">
-                Create Your Valentine Surprise
-            </h1>
-            
-            <p class="text-xl text-gray-600 mb-10 font-semibold">
-                Make someone's day extra special ✨
+        <h1 class="text-4xl sm:text-5xl mb-4 font-pacifico text-pink-600">
+            Create Your Valentine Surprise
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-gray-600 mb-8 font-semibold">
+            Make someone's day extra special ✨
+        </p>
+        
+        <input 
+            type="text" 
+            id="nameInput" 
+            placeholder="Enter their name... 💖"
+            class="input-field w-full p-4 sm:p-5 text-base sm:text-lg rounded-2xl border-2 border-pink-300 outline-none mb-6 font-semibold text-pink-600"
+        />
+        
+        <button 
+            id="generateBtn"
+            class="w-full p-4 sm:p-5 text-lg sm:text-xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-2xl cursor-pointer active:scale-95 transition-transform"
+        >
+            Generate Valentine Link 💖
+        </button>
+        
+        <!-- Generated Link -->
+        <div id="linkSection" class="hidden mt-8 p-5 bg-gradient-to-r from-pink-50 to-pink-100 rounded-2xl border-2 border-dashed border-pink-400">
+            <p class="text-sm text-gray-600 mb-3 font-semibold">
+                🎉 Your special link is ready!
             </p>
-            
-            <input 
-                type="text" 
-                id="nameInput" 
-                placeholder="Enter their name... 💖"
-                class="input-field w-full p-5 text-lg rounded-2xl border-2 border-pink-300 outline-none mb-5 font-semibold text-pink-600"
-            />
+            <div id="generatedLink" class="bg-white p-3 rounded-xl mb-4 break-all text-sm text-pink-600 font-semibold"></div>
             
             <button 
-                id="generateBtn"
-                class="button-hover w-full p-5 text-xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-2xl cursor-pointer"
+                id="copyBtn"
+                class="px-6 py-3 bg-pink-400 text-white rounded-xl cursor-pointer font-semibold text-base flex items-center gap-2 mx-auto active:scale-95 transition-transform"
             >
-                Generate Valentine Link 💖
+                <span id="copyIcon">📋</span> <span id="copyText">Copy Link</span>
             </button>
-            
-            <!-- Generated Link Section -->
-            <div id="linkSection" class="hidden mt-8 p-5 bg-gradient-to-r from-pink-50 to-pink-100 rounded-2xl border-2 border-dashed border-pink-400">
-                <p class="text-sm text-gray-600 mb-3 font-semibold">
-                    🎉 Your special link is ready!
-                </p>
-                
-                <div id="generatedLink" class="bg-white p-3 rounded-xl mb-3 break-all text-sm text-pink-600 font-semibold">
-                </div>
-                
-                <button 
-                    id="copyBtn"
-                    class="button-hover px-6 py-3 bg-pink-400 text-white rounded-xl cursor-pointer font-semibold text-base mx-auto flex items-center gap-2"
-                >
-                    <span id="copyIcon">📋</span> <span id="copyText">Copy Link</span>
-                </button>
-            </div>
-        </div>
-        
-        <!-- PAGE 2: Valentine Question -->
-        <div id="page2" class="hidden bg-white/95 backdrop-blur-lg rounded-3xl p-16 max-w-2xl w-full shadow-2xl text-center border-4 border-pink-200/30 relative overflow-y-scroll">
-            <div class="text-8xl mb-8 pulse-animation">💖</div>
-            
-            <h1 class="text-5xl mb-5 font-pacifico text-pink-600 leading-tight">
-                Hey <span id="userName"></span> 🥺💖
-            </h1>
-            
-            <p class="text-3xl text-gray-600 mb-12 font-semibold">
-                Will you be my Valentine?
-            </p>
-            
-            <!-- Funny Message Popup -->
-            <div id="funnyMessage" class="hidden absolute -top-16 left-1/2 transform -translate-x-1/2 bg-pink-400 text-white px-6 py-4 rounded-2xl text-lg font-semibold shadow-lg whitespace-nowrap shake-animation">
-            </div>
-            
-            <div class="flex gap-5 justify-center flex-wrap relative min-h-20">
-                <!-- YES Button -->
-                <button 
-                    id="yesBtn"
-                    class="button-hover yes-button px-16 py-5 text-2xl font-bold bg-gradient-to-r from-green-500 to-green-600 text-white rounded-2xl cursor-pointer"
-                >
-                    YES 💘
-                </button>
-                
-                <!-- NO Button - The Escaper -->
-                <button 
-                    id="noBtn"
-                    class="button-hover px-16 py-5 text-2xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-2xl cursor-pointer absolute"
-                    style="transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);"
-                >
-                    NO 🙄
-                </button>
-            </div>
-            
-            <div class="mt-10 flex justify-center gap-3 text-4xl">
-                <span class="pulse-animation">✨</span>
-                <span class="pulse-animation" style="animation-delay: 0.2s;">❤️</span>
-                <span class="pulse-animation" style="animation-delay: 0.4s;">✨</span>
-            </div>
-        </div>
-        
-        <!-- PAGE 3: Celebration -->
-        <div id="page3" class="hidden bg-white/95 backdrop-blur-lg rounded-3xl p-20 max-w-2xl w-full shadow-2xl text-center border-4 border-pink-200/30 pulse-animation">
-            <div class="text-9xl mb-8">🎉💖🎊</div>
-            
-            <h1 class="text-6xl mb-5 font-pacifico text-pink-600">
-                Yayyy!!
-            </h1>
-            
-            <p class="text-4xl text-gray-600 mb-8 font-semibold leading-relaxed">
-                💃🕺
-            </p>
-            
-            <p class="text-3xl text-pink-400 font-bold">
-                You just made someone very happy ❤️
-            </p>
-            
-            <div class="mt-12 text-5xl flex justify-center gap-4">
-                <span class="bounce-animation" style="animation-delay: 0s;">❤️</span>
-                <span class="bounce-animation" style="animation-delay: 0.2s;">💕</span>
-                <span class="bounce-animation" style="animation-delay: 0.4s;">💖</span>
-                <span class="bounce-animation" style="animation-delay: 0.6s;">💗</span>
-            </div>
         </div>
     </div>
+
+    <!-- PAGE 2: Will you be my Valentine? -->
+    <div id="page2" class="hidden bg-white/95 backdrop-blur-lg rounded-3xl p-8 sm:p-16 max-w-xl w-full shadow-2xl text-center border-4 border-pink-200/30 relative">
+        <div class="text-7xl sm:text-8xl mb-6 pulse-animation">💖</div>
+        
+        <h1 class="text-4xl sm:text-5xl mb-4 font-pacifico text-pink-600 leading-tight">
+            Hey <span id="userName"></span> 🥺💖
+        </h1>
+        
+        <p class="text-2xl sm:text-3xl text-gray-600 mb-10 font-semibold">
+            Will you be my Valentine?
+        </p>
+        
+        <div id="funnyMessage" class="hidden absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2 bg-pink-400 text-white px-5 sm:px-6 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-semibold shadow-lg whitespace-nowrap shake-animation">
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center relative min-h-[100px]">
+            <button 
+                id="yesBtn"
+                class="yes-button px-12 sm:px-16 py-4 sm:py-5 text-xl sm:text-2xl font-bold bg-gradient-to-r from-green-500 to-green-600 text-white rounded-2xl cursor-pointer active:scale-95 transition-transform"
+            >
+                YES 💘
+            </button>
+            
+            <button 
+                id="noBtn"
+                class="px-12 sm:px-16 py-4 sm:py-5 text-xl sm:text-2xl font-bold bg-gradient-to-r from-pink-400 to-pink-600 text-white rounded-2xl cursor-pointer active:scale-95 transition-all"
+                style="transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);"
+            >
+                NO 🙄
+            </button>
+        </div>
+        
+        <div class="mt-10 flex justify-center gap-4 text-3xl sm:text-4xl">
+            <span class="pulse-animation">✨</span>
+            <span class="pulse-animation" style="animation-delay:0.2s">❤️</span>
+            <span class="pulse-animation" style="animation-delay:0.4s">✨</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Celebration -->
+    <div id="page3" class="hidden bg-white/95 backdrop-blur-lg rounded-3xl p-10 sm:p-20 max-w-xl w-full shadow-2xl text-center border-4 border-pink-200/30">
+        <div class="text-7xl sm:text-9xl mb-6">🎉💖🎊</div>
+        
+        <h1 class="text-5xl sm:text-6xl mb-5 font-pacifico text-pink-600">
+            Yayyy!!
+        </h1>
+        
+        <p class="text-3xl sm:text-4xl text-gray-600 mb-6 font-semibold leading-relaxed">
+            💃🕺
+        </p>
+        
+        <p class="text-2xl sm:text-3xl text-pink-400 font-bold">
+            You just made someone very happy ❤️
+        </p>
+        
+        <div class="mt-10 flex justify-center gap-4 sm:gap-6 text-4xl sm:text-5xl">
+            <span class="bounce-animation">❤️</span>
+            <span class="bounce-animation" style="animation-delay:0.2s">💕</span>
+            <span class="bounce-animation" style="animation-delay:0.4s">💖</span>
+            <span class="bounce-animation" style="animation-delay:0.6s">💗</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Confetti layer -->
+<div id="confettiContainer" class="fixed inset-0 pointer-events-none z-50"></div>
+
+<script>
+// ──────────────────────────────────────────────
+let dodgeCount = 0;
+const funnyMessages = [
+    "Hey! Why you running? 😭",
+    "You can't say nooo 😂",
+    "Come on, just say yes! 🥺",
+    "The NO button is broken! 💔",
+    "It's destiny, stop fighting it! ✨",
+    "I see what you're doing... 👀",
+    "YES is the only option here 😌",
+    "This is getting ridiculous 🤣",
+    "Just give up and click YES! 💖"
+];
+
+function createFloatingHearts() {
+    const container = document.getElementById('floatingHearts');
+    for (let i = 0; i < 12; i++) {   // reduced count for mobile performance
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart absolute text-3xl sm:text-4xl opacity-40';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.bottom = '-60px';
+        heart.style.animationDuration = (9 + Math.random() * 5) + 's';
+        heart.style.animationDelay = Math.random() * 6 + 's';
+        container.appendChild(heart);
+    }
+}
+
+function checkURLForName() {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('name');
+    if (name) {
+        document.getElementById('userName').textContent = decodeURIComponent(name);
+        showPage('page2');
+    }
+}
+
+function showPage(pageId) {
+    document.querySelectorAll('#page1, #page2, #page3').forEach(el => el.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+}
+
+// ─── Page 1 logic ──────────────────────────────────────
+document.getElementById('generateBtn').onclick = () => {
+    const name = document.getElementById('nameInput').value.trim();
+    if (!name) return;
     
-    <!-- Confetti Container -->
-    <div id="confettiContainer" class="fixed inset-0 pointer-events-none z-50"></div>
+    const link = `${location.origin}${location.pathname}?name=${encodeURIComponent(name)}`;
+    document.getElementById('generatedLink').textContent = link;
+    document.getElementById('linkSection').classList.remove('hidden');
+};
 
-    <script>
-        // State management
-        let dodgeCount = 0;
-        let noButtonPos = { x: 0, y: 0 };
-        
-        // Messages that get funnier each time
-        const funnyMessages = [
-            "Hey! Why you running? 😭",
-            "You can't say nooo 😂",
-            "Come on, just say yes! 🥺",
-            "The NO button is broken! 💔",
-            "It's destiny, stop fighting it! ✨",
-            "I see what you're doing... 👀",
-            "YES is the only option here 😌",
-            "This is getting ridiculous 🤣",
-            "Just give up and click YES! 💖"
-        ];
-        
-        // Generate floating hearts on page load
-        function createFloatingHearts() {
-            const container = document.getElementById('floatingHearts');
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart absolute text-4xl opacity-30';
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.bottom = '-50px';
-                heart.style.animationDuration = (8 + Math.random() * 4) + 's';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                heart.style.fontSize = (20 + Math.random() * 30) + 'px';
-                container.appendChild(heart);
-            }
-        }
-        
-        // Check URL for name parameter on load
-        function checkURLForName() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const urlName = urlParams.get('name');
-            if (urlName) {
-                document.getElementById('userName').textContent = decodeURIComponent(urlName);
-                showPage('page2');
-            }
-        }
-        
-        // Show specific page
-        function showPage(pageId) {
-            document.getElementById('page1').classList.add('hidden');
-            document.getElementById('page2').classList.add('hidden');
-            document.getElementById('page3').classList.add('hidden');
-            document.getElementById(pageId).classList.remove('hidden');
-        }
-        
-        // Generate link
-        document.getElementById('generateBtn').addEventListener('click', function() {
-            const name = document.getElementById('nameInput').value.trim();
-            if (!name) return;
-            
-            const encodedName = encodeURIComponent(name);
-            const link = `${window.location.origin}${window.location.pathname}?name=${encodedName}`;
-            
-            document.getElementById('generatedLink').textContent = link;
-            document.getElementById('linkSection').classList.remove('hidden');
-        });
-        
-        // Enter key support for name input
-        document.getElementById('nameInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('generateBtn').click();
-            }
-        });
-        
-        // Copy to clipboard
-        document.getElementById('copyBtn').addEventListener('click', function() {
-            const link = document.getElementById('generatedLink').textContent;
-            navigator.clipboard.writeText(link);
-            
-            document.getElementById('copyIcon').textContent = '✅';
-            document.getElementById('copyText').textContent = 'Copied!';
-            this.classList.remove('bg-pink-400');
-            this.classList.add('bg-green-500');
-            
-            setTimeout(() => {
-                document.getElementById('copyIcon').textContent = '📋';
-                document.getElementById('copyText').textContent = 'Copy Link';
-                this.classList.remove('bg-green-500');
-                this.classList.add('bg-pink-400');
-            }, 2000);
-        });
-        
-        // Move NO button away
-        function moveNoButton() {
-            dodgeCount++;
-            
-            // Show funny message
-            const messageDiv = document.getElementById('funnyMessage');
-            const messageIndex = Math.min(dodgeCount - 1, funnyMessages.length - 1);
-            messageDiv.textContent = funnyMessages[messageIndex];
-            messageDiv.classList.remove('hidden');
-            
-            // Remove shake animation and re-add it
-            messageDiv.classList.remove('shake-animation');
-            void messageDiv.offsetWidth; // Trigger reflow
-            messageDiv.classList.add('shake-animation');
-            
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-            }, 2000);
-            
-            // Calculate new position with increasing chaos
-            const speedMultiplier = 1 + (dodgeCount * 0.3);
-            const maxMove = Math.min(200, 80 + (dodgeCount * 15));
-            
-            const randomX = (Math.random() - 0.5) * maxMove * speedMultiplier;
-            const randomY = (Math.random() - 0.5) * maxMove * speedMultiplier;
-            
-            noButtonPos = { x: randomX, y: randomY };
-            
-            const noBtn = document.getElementById('noBtn');
-            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-            
-            // Make it faster each time
-            const speed = Math.max(0.1, 0.3 - (dodgeCount * 0.02));
-            noBtn.style.transition = `transform ${speed}s cubic-bezier(0.68, -0.55, 0.265, 1.55)`;
-        }
-        
-        // NO button events
-        document.getElementById('noBtn').addEventListener('mouseenter', moveNoButton);
-        document.getElementById('noBtn').addEventListener('click', moveNoButton);
-        
-        // YES button - Show celebration
-        document.getElementById('yesBtn').addEventListener('click', function() {
-            createConfetti();
-            showPage('page3');
-        });
-        
-        // Create confetti
-        function createConfetti() {
-            const container = document.getElementById('confettiContainer');
-            const emojis = ['💖', '💕', '💗', '💓', '💝', '🎉', '✨', '🌟'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti fixed text-4xl';
-                confetti.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.top = '-50px';
-                confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                container.appendChild(confetti);
-                
-                // Remove after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 4000);
-            }
-        }
-        
-        // Initialize on page load
-        window.addEventListener('load', function() {
-            createFloatingHearts();
-            checkURLForName();
+document.getElementById('nameInput').onkeypress = e => {
+    if (e.key === 'Enter') document.getElementById('generateBtn').click();
+};
 
-            // Start music (muted by default)
-            const music = document.getElementById('bgMusic');
-            music.volume = 0.25;           // gentle volume
-            music.play().catch(() => {
-                // Autoplay blocked → wait for user interaction
-                document.body.addEventListener('click', () => {
-                    music.muted = false;
-                    music.play();
-                }, { once: true });
-            });
-        });
-    </script>
+document.getElementById('copyBtn').onclick = function() {
+    const link = document.getElementById('generatedLink').textContent;
+    navigator.clipboard.writeText(link).then(() => {
+        this.classList.remove('bg-pink-400');
+        this.classList.add('bg-green-500');
+        document.getElementById('copyIcon').textContent = '✅';
+        document.getElementById('copyText').textContent = 'Copied!';
+        setTimeout(() => {
+            this.classList.remove('bg-green-500');
+            this.classList.add('bg-pink-400');
+            document.getElementById('copyIcon').textContent = '📋';
+            document.getElementById('copyText').textContent = 'Copy Link';
+        }, 2200);
+    });
+};
+
+// ─── Page 2 logic ──────────────────────────────────────
+function moveNoButton() {
+    dodgeCount++;
+    const msgDiv = document.getElementById('funnyMessage');
+    const idx = Math.min(dodgeCount - 1, funnyMessages.length - 1);
+    msgDiv.textContent = funnyMessages[idx];
+    msgDiv.classList.remove('hidden');
+    void msgDiv.offsetWidth;
+    msgDiv.classList.add('shake-animation');
+    setTimeout(() => msgDiv.classList.add('hidden'), 2200);
+
+    const chaos = 1 + dodgeCount * 0.25;
+    const maxMove = Math.min(180, 70 + dodgeCount * 12);
+    const x = (Math.random() - 0.5) * maxMove * chaos;
+    const y = (Math.random() - 0.5) * maxMove * chaos;
+    
+    const btn = document.getElementById('noBtn');
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+    
+    const speed = Math.max(0.12, 0.35 - dodgeCount * 0.025);
+    btn.style.transition = `transform ${speed}s cubic-bezier(0.68,-0.55,0.265,1.55)`;
+}
+
+document.getElementById('noBtn').onmouseenter = moveNoButton;
+document.getElementById('noBtn').onclick = moveNoButton;
+
+document.getElementById('yesBtn').onclick = () => {
+    createConfetti();
+    showPage('page3');
+};
+
+function createConfetti() {
+    const container = document.getElementById('confettiContainer');
+    const items = ['💖','💕','💗','💓','💝','🎉','✨','🌟'];
+    for (let i = 0; i < 40; i++) {   // reduced for mobile
+        const c = document.createElement('div');
+        c.className = 'confetti fixed text-3xl sm:text-4xl';
+        c.textContent = items[Math.floor(Math.random()*items.length)];
+        c.style.left = Math.random()*100 + '%';
+        c.style.top = '-40px';
+        c.style.animationDuration = (1.8 + Math.random()*2.2) + 's';
+        container.appendChild(c);
+        setTimeout(() => c.remove(), 4500);
+    }
+}
+
+// ─── Init ──────────────────────────────────────────────
+window.addEventListener('load', () => {
+    createFloatingHearts();
+    checkURLForName();
+
+    const music = document.getElementById('bgMusic');
+    music.volume = 0.25;
+    music.play().catch(() => {
+        document.body.addEventListener('touchend', () => {
+            music.muted = false;
+            music.play();
+        }, { once: true });
+    });
+});
+</script>
 </body>
-</html>
+    </html>
